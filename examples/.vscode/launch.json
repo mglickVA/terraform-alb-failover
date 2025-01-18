@@ -1,0 +1,74 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Run All Tests",
+            "type": "python",
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                "tests",
+                "-v",
+                "--log-cli-level=INFO"
+            ],
+            "env": {
+                "AWS_ACCESS_KEY_ID": "mock_access_key",
+                "AWS_SECRET_ACCESS_KEY": "mock_secret_key",
+                "AWS_SESSION_TOKEN": "mock_session_token",
+                "AWS_DEFAULT_REGION": "us-east-1",
+                "TF_VAR_environment": "test",
+                "TF_VAR_project_name": "test-project",
+                "TF_VAR_domain_name": "example.com",
+                "TF_VAR_health_check_path": "/health/status.json"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "Python: Run Unit Tests",
+            "type": "python",
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                "tests/unit",
+                "-v",
+                "--log-cli-level=INFO"
+            ],
+            "env": {
+                "AWS_ACCESS_KEY_ID": "mock_access_key",
+                "AWS_SECRET_ACCESS_KEY": "mock_secret_key",
+                "AWS_SESSION_TOKEN": "mock_session_token",
+                "AWS_DEFAULT_REGION": "us-east-1",
+                "TF_VAR_environment": "test",
+                "TF_VAR_project_name": "test-project",
+                "TF_VAR_domain_name": "example.com",
+                "TF_VAR_health_check_path": "/health/status.json"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "Python: Run Integration Tests",
+            "type": "python",
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                "tests/integration",
+                "-v",
+                "--log-cli-level=INFO"
+            ],
+            "env": {
+                "AWS_ACCESS_KEY_ID": "mock_access_key",
+                "AWS_SECRET_ACCESS_KEY": "mock_secret_key",
+                "AWS_SESSION_TOKEN": "mock_session_token",
+                "AWS_DEFAULT_REGION": "us-east-1",
+                "TF_VAR_environment": "test",
+                "TF_VAR_project_name": "test-project",
+                "TF_VAR_domain_name": "example.com",
+                "TF_VAR_health_check_path": "/health/status.json"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": false
+        }
+    ]
+}

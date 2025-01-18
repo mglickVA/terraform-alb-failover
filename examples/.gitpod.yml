@@ -1,0 +1,52 @@
+tasks:
+  - name: Install
+    before: |
+      make create-workspace
+    init: |
+      make start-workspace
+
+vscode:
+  extensions:
+    - EditorConfig.EditorConfig
+    - streetsidesoftware.code-spell-checker
+    - sourcegraph.cody-ai
+    - eamodio.gitlens
+    - NicolasVuillamy.vscode-groovy-lint
+    - medo64.render-crlf
+    - esbenp.prettier-vscode
+    - tamasfe.even-better-toml
+    - ms-python.python
+    - charliermarsh.ruff
+    - bierner.markdown-mermaid
+    - hashicorp.terraform
+
+github:
+  prebuilds:
+    # enable for the master/default branch (defaults to true)
+    master: true
+    # enable for all branches in this repo (defaults to false)
+    branches: true
+    # enable for pull requests coming from this repo (defaults to true)
+    pullRequests: true
+    # add a check to pull requests (defaults to true)
+    addCheck: true
+    # add a "Review in Gitpod" button as a comment to pull requests (defaults to false)
+    addComment: true
+
+ports:
+  - port: 4566
+    onOpen: ignore
+    visibility: public
+  - port: 8080
+    onOpen: open-preview
+    visibility: public
+
+env:
+  SSL_CERT_FILE: /etc/ssl/certs/ca-certificates.crt
+  REQUESTS_CA_BUNDLE: /etc/ssl/certs/ca-certificates.crt
+  AWS_ACCESS_KEY_ID: test_key
+  AWS_SECRET_ACCESS_KEY: test_secret
+  AWS_REGION: us-east-1
+  AWS_DEFAULT_REGION: us-east-1
+  AWS_ENDPOINT_URL: http://localhost:4566
+  ENDPOINT_URL: http://localhost:4566

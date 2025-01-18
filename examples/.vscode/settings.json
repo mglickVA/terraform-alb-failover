@@ -1,0 +1,35 @@
+{
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestArgs": [
+        "tests",
+        "-v",
+        "--log-cli-level=INFO"
+    ],
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "[terraform]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "hashicorp.terraform"
+    },
+    "terraform.languageServer": {
+        "enabled": true,
+        "args": []
+    },
+    "files.associations": {
+        "*.tf": "terraform"
+    },
+    "terminal.integrated.env.linux": {
+        "AWS_ACCESS_KEY_ID": "mock_access_key",
+        "AWS_SECRET_ACCESS_KEY": "mock_secret_key",
+        "AWS_SESSION_TOKEN": "mock_session_token",
+        "AWS_DEFAULT_REGION": "us-east-1",
+        "TF_VAR_environment": "test",
+        "TF_VAR_project_name": "test-project",
+        "TF_VAR_domain_name": "example.com",
+        "TF_VAR_health_check_path": "/health/status.json"
+    }
+}
