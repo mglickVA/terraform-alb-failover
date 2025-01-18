@@ -2,16 +2,61 @@
 
 Thank you for your interest in contributing to this project! This document provides guidelines and instructions for contributing.
 
+## Prerequisites
+
+- Python 3.12 or higher
+- Terraform 1.0.0 or higher
+- Docker and Docker Compose
+- Make
+
 ## Development Environment Setup
 
 1. Fork and clone the repository
-2. Install dependencies:
+2. Start LocalStack:
+```bash
+docker-compose up -d
+```
+3. Install dependencies:
 ```bash
 make install
 ```
-3. Initialize Terraform:
+4. Initialize Terraform:
 ```bash
 make init
+```
+
+## LocalStack Setup
+
+This project uses LocalStack to mock AWS services for testing. The following services are mocked:
+- S3
+- EC2 (VPC, Subnets)
+- ELBv2 (Application Load Balancers)
+- Route53
+- API Gateway
+- IAM
+
+### Starting LocalStack
+
+```bash
+# Start LocalStack in the background
+docker-compose up -d
+
+# View LocalStack logs
+docker-compose logs -f localstack
+
+# Stop LocalStack
+docker-compose down
+```
+
+### Environment Variables
+
+The following environment variables are automatically set by the test framework:
+```bash
+AWS_ACCESS_KEY_ID=mock_access_key
+AWS_SECRET_ACCESS_KEY=mock_secret_key
+AWS_SESSION_TOKEN=mock_session_token
+AWS_DEFAULT_REGION=us-east-1
+AWS_ENDPOINT_URL=http://localhost:4566
 ```
 
 ## Branch Naming Convention
@@ -39,12 +84,34 @@ make test
 ## Testing Requirements
 
 - All new features must include tests
+- Start LocalStack before running tests:
+```bash
+make localstack-up  # Start LocalStack
+```
 - Run the full test suite before submitting PR:
 ```bash
 make test          # Run all tests
 make test-unit     # Run unit tests
 make test-integration  # Run integration tests
 ```
+- Stop LocalStack after testing:
+```bash
+make localstack-down  # Stop LocalStack
+```
+
+### Testing with LocalStack
+
+The test suite uses LocalStack to mock AWS services. When running tests:
+
+1. Ensure LocalStack is running (`make localstack-up`)
+2. Run your tests (`make test`)
+3. Check LocalStack logs for debugging:
+```bash
+docker-compose logs -f localstack
+```
+4. Stop LocalStack when done (`make localstack-down`)
+
+The test framework automatically configures the AWS endpoint to use LocalStack.
 
 ## Code Style and Formatting
 
